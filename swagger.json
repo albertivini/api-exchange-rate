@@ -1,0 +1,140 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Exchange Rate Documentation",
+        "description": "This is an API to Exchange Rate",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/exchange/{userId}": {
+            "post": {
+                "tags": [
+                    "Exchange"
+                ],
+                "summary": "Exchange Rate by origin currency",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "originValue": {
+                                        "type": "number"
+                                    },
+                                    "originCurrency": {
+                                        "type": "string"
+                                    },
+                                    "destinyCurrency": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transactionId": {
+                                            "type": "string"
+                                        },
+                                        "userId": {
+                                            "type": "string"
+                                        },
+                                        "originCurrency": {
+                                            "type": "string"
+                                        },
+                                        "originValue": {
+                                            "type": "number"
+                                        },
+                                        "destinyCurrency": {
+                                            "type": "string"
+                                        },
+                                        "destinyValue": {
+                                            "type": "number"
+                                        },
+                                        "conversionRate": {
+                                            "type": "number"
+                                        },
+                                        "timestamp": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Currency not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Exchange"
+                ],
+                "summary": "Get Exchanges by User",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "userId": {
+                                                "type": "string"
+                                            },
+                                            "originCurrency": {
+                                                "type": "string"
+                                            },
+                                            "originValue": {
+                                                "type": "number"
+                                            },
+                                            "destinyCurrency": {
+                                                "type": "string"
+                                            },
+                                            "destinyValue": {
+                                                "type": "number"
+                                            },
+                                            "conversionRate": {
+                                                "type": "number"
+                                            },
+                                            "timestamp": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "None exchange has found"
+                    }
+                }
+            }
+        }
+    }
+}

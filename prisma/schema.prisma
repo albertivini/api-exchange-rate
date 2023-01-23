@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url = "file:./database.sqlite"
+}
+
+model Transaction {
+  id    String     @id @default(uuid())
+  userId String
+  originCurrency String
+  originValue  Float
+  destinyCurrency String
+  destinyValue Float
+  conversionRate Float
+  timestamp DateTime
+  
+  @@map("transactions")   
+}
